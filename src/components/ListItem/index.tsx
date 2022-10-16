@@ -14,7 +14,7 @@ export const ListItem = ({
 }) => {
   return (
     <TouchableNativeFeedback onPress={onPress}>
-      <View className='rounded-sm bg-white my-2 shadow border border-neutral-50'>
+      <View className='rounded-sm bg-white shadow border border-neutral-50'>
         <Image
           className='w-full h-52 rounded-t-sm'
           source={{

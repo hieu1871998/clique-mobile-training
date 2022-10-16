@@ -27,20 +27,23 @@ export const AppNavigator = () => {
           <Stack.Screen
             name='Root'
             component={RootContainer}
-            options={{
-              headerStyle: {
-                backgroundColor: Colors.Primary,
-              },
-              headerTitleStyle: {
-                color: '#ffffff',
-                fontWeight: 'bold',
-              },
-              headerSearchBarOptions: {
-                hintTextColor: '#ffffff',
-                headerIconColor: '#ffffff',
-                textColor: '#ffffff',
-                shouldShowHintSearchIcon: false,
-              },
+            options={({ route }) => {
+              console.log(route)
+              return {
+                headerStyle: {
+                  backgroundColor: Colors.Primary,
+                },
+                headerTitleStyle: {
+                  color: '#ffffff',
+                  fontWeight: 'bold',
+                },
+                headerSearchBarOptions: {
+                  hintTextColor: '#ffffff',
+                  headerIconColor: '#ffffff',
+                  textColor: '#ffffff',
+                  shouldShowHintSearchIcon: false,
+                },
+              }
             }}
           />
         </Stack.Group>

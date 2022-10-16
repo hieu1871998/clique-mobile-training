@@ -7,9 +7,7 @@ const queryClient = new QueryClient()
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <SafeAreaView>
-        <AppNavigator />
-      </SafeAreaView>
+      <AppNavigator />
     </QueryClientProvider>
   )
 }

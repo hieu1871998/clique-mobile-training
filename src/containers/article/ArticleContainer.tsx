@@ -30,7 +30,6 @@ export const ArticleContainer = ({ navigation }) => {
       article
     })
   }
-  const offset = useSharedValue(0);
 
   return (
     <Animated.View>

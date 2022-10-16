@@ -1,3 +1,4 @@
 export enum ENDPOINTS {
-  ARTICLES = '/public/article'
+  ARTICLES = '/public/article',
+  HORSE_LIST = '/public/horse/list'
 }
