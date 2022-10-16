@@ -28,7 +28,6 @@ export const AppNavigator = () => {
             name='Root'
             component={RootContainer}
             options={({ route }) => {
-              console.log(route)
               return {
                 headerStyle: {
                   backgroundColor: Colors.Primary,
@@ -43,6 +42,8 @@ export const AppNavigator = () => {
                   textColor: '#ffffff',
                   shouldShowHintSearchIcon: false,
                 },
+                title: 'Racing Collective',
+                headerShown: false,
               }
             }}
           />
@@ -56,6 +57,7 @@ export const AppNavigator = () => {
                 fontWeight: 'bold',
               },
               headerShadowVisible: false,
+              headerShown: false,
             }}
           />
         </Stack.Group>

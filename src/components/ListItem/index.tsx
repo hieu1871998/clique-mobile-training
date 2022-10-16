@@ -17,10 +17,10 @@ export const ListItem = ({
       <View className='rounded-sm bg-white shadow border border-neutral-50'>
         <Image
           className='w-full h-52 rounded-t-sm'
-          source={{
-            uri: article?.imageUrl ?? 'https://test-next.bloodstockexchange.com.au/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignup.8e75b832.png&w=1080&q=75'
-          }}
-          style={{ resizeMode: 'stretch' }}
+          source={article?.imageUrl ? {
+            uri: article?.imageUrl
+          } : require('../../assets/images/logo_primary.png')}
+          style={{ resizeMode: article?.imageUrl ? 'stretch' : 'center' }}
         />
         <View className='p-3 rounded'>
           <Text

@@ -18,7 +18,7 @@ export const SalesContainer = () => {
     orderBy: 'publishedDate',
     orderDirection: 'desc',
     pageIndex: 0,
-    pageSize: 30,
+    pageSize: 10,
     typeIds: type || 1,
   })
   const { data: horsesResp, refetch, isFetching } = useGetHorses(payload)

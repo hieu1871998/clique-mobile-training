@@ -1,4 +1,3 @@
-import { SafeAreaView } from 'react-native'
 import { AppNavigator } from 'containers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 

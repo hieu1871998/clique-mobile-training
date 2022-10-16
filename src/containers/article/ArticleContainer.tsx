@@ -18,7 +18,7 @@ export const ArticleContainer = ({ navigation }) => {
     isFetching,
   } = useGetArticles({
     pageIndex: 0,
-    pageSize: 30,
+    pageSize: 10,
     orderBy: 'publishedDate',
     orderDirection: 'desc',
     isSimple: true,

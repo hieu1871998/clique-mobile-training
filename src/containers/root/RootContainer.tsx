@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator()
 
 export const RootContainer = ({ navigation }) => {
   return (
-    <SafeAreaView className='h-full'>
+    <>
       <StatusBar backgroundColor={Colors.Primary} />
       <Tab.Navigator
         initialRouteName='News'
@@ -53,7 +53,7 @@ export const RootContainer = ({ navigation }) => {
               },
             },
           },
-          headerShown: false,
+          headerShown: true,
         }}
       >
         <Tab.Screen
@@ -177,6 +177,6 @@ export const RootContainer = ({ navigation }) => {
           }}
         />
       </Tab.Navigator>
-    </SafeAreaView>
+    </>
   )
 }
