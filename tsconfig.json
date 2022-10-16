@@ -11,10 +11,11 @@
     "baseUrl": "./",
     "jsx": "react-native",
     "paths": {
+      "apis": ["src/network"],
       "components": ["src/components"],
-      "containers": ["src/containers"],
       "constants": ["src/constants"],
-      "apis": ["src/network"]
+      "containers": ["src/containers"],
+      "interfaces": ["src/interfaces"]
     },
     "incremental": true
   }

@@ -1,3 +1,3 @@
 export enum ENDPOINTS {
-  ARTICLES = '/clique/articles'
+  ARTICLES = '/public/article'
 }

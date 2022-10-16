@@ -1,7 +1,8 @@
 import { ENDPOINTS } from 'constants'
+import { Article, ArticleRequest, BaseResponse } from 'interfaces'
 import AxiosInstance from '../axios'
 
-const { get } = AxiosInstance
+const { post } = AxiosInstance
 
-export const getArticles = () =>
-  get(ENDPOINTS.ARTICLES)
+export const getArticles = (payload: ArticleRequest): Promise<BaseResponse<Article[]>> =>
+  post(ENDPOINTS.ARTICLES, payload)
