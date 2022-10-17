@@ -34,7 +34,7 @@ export const AppNavigator = () => {
         <Stack.Group>
           <Stack.Screen
             name='Root'
-            component={DrawerNavigator}
+            component={RootContainer}
             options={({ route }) => {
               return {
                 headerStyle: {

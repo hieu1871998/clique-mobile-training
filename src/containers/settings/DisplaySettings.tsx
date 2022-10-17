@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GestureResponderEvent, Switch, Text, TouchableNativeFeedback, View } from 'react-native'
+import { GestureResponderEvent, Switch, Text, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export const DisplaySettingsContainer = () => {
@@ -33,12 +33,10 @@ const SettingItem = ({
   text,
   toggled,
   toggleSwitch,
-  onPress,
 }: {
   text: string
   toggled: boolean,
   toggleSwitch: () => void
-  onPress?: (event: GestureResponderEvent) => void
 }) => {
   return (
     <View
@@ -55,7 +53,12 @@ const SettingItem = ({
         elevation: 4,
       }}
     >
-      <TouchableNativeFeedback onPress={onPress}>
+      <TouchableHighlight
+        className='rounded-md'
+        activeOpacity={1}
+        underlayColor='#ffffff'
+        onPress={toggleSwitch}
+      >
         <View
           className='rounded-md p-2 flex flex-row items-center justify-between'
         >
@@ -70,7 +73,7 @@ const SettingItem = ({
             />
           </View>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableHighlight>
     </View>
   )
 }

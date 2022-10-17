@@ -1,13 +1,13 @@
 import styled from '@emotion/native'
 import React from 'react'
 import { GestureResponderEvent, View } from 'react-native'
-import { TouchableNativeFeedback } from 'react-native-gesture-handler'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 import { Text } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export const SettingsContainer = ({ navigation }) => {
-  const onDisplayPress = (event: GestureResponderEvent) => {
+  const onDisplayPress = () => {
     navigation.navigate('Display Settings')
   }
   
@@ -53,7 +53,7 @@ const SettingItem = ({
 }: {
   icon: string
   text: string
-  onPress?: (event: GestureResponderEvent) => void
+  onPress?: () => void
 }) => {
   return (
     <View
@@ -70,14 +70,19 @@ const SettingItem = ({
         elevation: 4,
       }}
     >
-      <TouchableNativeFeedback onPress={onPress}>
+      <TouchableHighlight
+        className='rounded-md'
+        activeOpacity={1}
+        underlayColor='#ffffff'
+        onPress={onPress}
+      >
         <View
           className='rounded-md p-2 flex flex-row items-center'
         >
           <Icon name={icon} size={24} />
           <Text className='ml-2'>{text}</Text>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableHighlight>
     </View>
   )
 }
