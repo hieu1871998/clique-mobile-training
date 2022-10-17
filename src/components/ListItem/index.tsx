@@ -1,9 +1,7 @@
 import { Article } from 'interfaces'
-import { View, Text, Image, GestureResponderEvent, Button, TouchableNativeFeedback } from 'react-native'
+import { View, Text, Image, GestureResponderEvent, Button, TouchableNativeFeedback, TouchableHighlight } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import dayjs from 'dayjs'
-import styled from '@emotion/native'
-import { Colors } from 'constants'
 
 export const ListItem = ({
   article,
@@ -35,9 +33,17 @@ export const ListItem = ({
           <Text className='mb-2 text-neutral-500 font-poppins leading-5' numberOfLines={3}>
             {article?.description}
           </Text>
-          <Text className='text-xs text-neutral-400 font-poppins'>
-            {article?.publishDate ? `${dayjs(article?.publishDate).format('DD MMM YYYY')}` : ''}
-          </Text>
+          <View className='flex flex-row justify-between'>
+            <Text className='text-xs text-neutral-400 font-poppins uppercase'>{article?.publishDate ? `${dayjs(article?.publishDate).format('DD MMM YYYY')}` : ''}</Text>
+            <TouchableNativeFeedback>
+              <View>
+                <Icon
+                  name='share-variant-outline'
+                  size={20}
+                />
+              </View>
+            </TouchableNativeFeedback>
+          </View>
         </View>
       </View>
     </TouchableNativeFeedback>

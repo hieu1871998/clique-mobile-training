@@ -2,11 +2,10 @@ import { useGetHorses } from 'apis'
 import { FilterBlock, SalesItem } from 'components'
 import { Horse, HorseRequest } from 'interfaces'
 import { useMemo, useState } from 'react'
-import { ScrollView, View } from 'react-native'
+import { View } from 'react-native'
 import { FlatList, RefreshControl } from 'react-native-gesture-handler'
-import Animated from 'react-native-reanimated'
 
-enum HorseType {
+export enum HorseType {
   Sale = 1,
   Lease = 2,
   Syndication = 3,
@@ -30,7 +29,7 @@ export const SalesContainer = () => {
   )
 
   return (
-    <Animated.View>
+    <>
       <FilterBlock />
       <FlatList
         className='px-2 pb-20'
@@ -58,6 +57,6 @@ export const SalesContainer = () => {
           justifyContent: 'space-around'
         }}
       />
-    </Animated.View>
+    </>
   )
 }

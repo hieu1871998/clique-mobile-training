@@ -18,25 +18,4 @@ module.exports = {
     'nativewind/babel',
     'react-native-reanimated/plugin',
   ]
-};
-
-// module.exports = (api) => {
-//   api.cache(true)
-
-//   return {
-//     presets: [
-//       'module:metro-react-native-babel-preset',
-//     ],
-//     plugins: [
-//       [
-//         'module-resolver',
-//         {
-//           alias: {
-//             components: './src/components',
-//             containers: './src/containers'
-//           }
-//         }
-//       ]
-//     ]
-//   }
-// }
+}

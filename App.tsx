@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { AppNavigator } from 'containers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 

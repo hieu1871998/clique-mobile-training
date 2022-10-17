@@ -1,9 +1,5 @@
-import { Article, Horse } from 'interfaces'
-import { View, Text, Image, GestureResponderEvent, Button, TouchableNativeFeedback } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import dayjs from 'dayjs'
-import styled from '@emotion/native'
-import { Colors } from 'constants'
+import { Horse } from 'interfaces'
+import { View, Text, Image, GestureResponderEvent, TouchableNativeFeedback } from 'react-native'
 
 export const SalesItem = ({
   horse,

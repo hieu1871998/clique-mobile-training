@@ -3,10 +3,7 @@ import { FilterBlock, ListItem } from 'components'
 import { Article } from 'interfaces'
 import { useMemo } from 'react'
 import { Dimensions, FlatList, RefreshControl, Text, TouchableNativeFeedback, View } from 'react-native'
-import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { ArticleDetail } from './ArticleDetail'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Stack = createNativeStackNavigator()
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -32,7 +29,7 @@ export const ArticleContainer = ({ navigation }) => {
   }
 
   return (
-    <Animated.View>
+    <>
       <FilterBlock />
       <FlatList
         className='px-2 pb-40'
@@ -54,6 +51,6 @@ export const ArticleContainer = ({ navigation }) => {
           />
         }
       />
-    </Animated.View>
+    </>
   )
 }

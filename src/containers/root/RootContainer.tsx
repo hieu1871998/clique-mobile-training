@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ArticleContainer, HomeContainer, RacingContainer, SalesContainer } from 'containers'
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { MoreContainer } from '../more/MoreContainer'
 
 const Tab = createBottomTabNavigator()
 
@@ -14,15 +15,15 @@ export const RootContainer = ({ navigation }) => {
     <>
       <StatusBar backgroundColor={Colors.Primary} />
       <Tab.Navigator
-        initialRouteName='News'
+        initialRouteName='More'
         screenOptions={{
           tabBarStyle: {
             height: 56,
           },
           tabBarItemStyle: {
             height: 56,
-            paddingTop: 8,
-            paddingBottom: 8,
+            paddingTop: 4,
+            paddingBottom: 4,
           },
           headerRight: () => (
             <TouchableNativeFeedback>
@@ -65,7 +66,8 @@ export const RootContainer = ({ navigation }) => {
             },
             headerTitleStyle: {
               color: '#ffffff',
-              fontWeight: 'bold',
+              fontWeight: '600',
+              fontFamily: 'Poppins',
             },
             tabBarIcon: ({ focused, color, size }) => (
               <MCIcon
@@ -77,6 +79,7 @@ export const RootContainer = ({ navigation }) => {
             tabBarLabelStyle: {
               fontSize: 12,
               color: '#292D32',
+              fontFamily: 'Poppins',
             },
           }}
         />
@@ -89,7 +92,8 @@ export const RootContainer = ({ navigation }) => {
             },
             headerTitleStyle: {
               color: '#ffffff',
-              fontWeight: 'bold',
+              fontWeight: '600',
+              fontFamily: 'Poppins',
             },
             tabBarIcon: ({ focused, color, size }) => (
               <MCIcon
@@ -101,6 +105,7 @@ export const RootContainer = ({ navigation }) => {
             tabBarLabelStyle: {
               fontSize: 12,
               color: '#292D32',
+              fontFamily: 'Poppins',
             },
           }}
         />
@@ -113,7 +118,8 @@ export const RootContainer = ({ navigation }) => {
             },
             headerTitleStyle: {
               color: '#ffffff',
-              fontWeight: 'bold',
+              fontWeight: '600',
+              fontFamily: 'Poppins',
             },
             tabBarIcon: ({ focused, color, size }) => (
               <MCIcon
@@ -125,6 +131,7 @@ export const RootContainer = ({ navigation }) => {
             tabBarLabelStyle: {
               fontSize: 12,
               color: '#292D32',
+              fontFamily: 'Poppins',
             },
           }}
         />
@@ -137,7 +144,8 @@ export const RootContainer = ({ navigation }) => {
             },
             headerTitleStyle: {
               color: '#ffffff',
-              fontWeight: 'bold',
+              fontWeight: '600',
+              fontFamily: 'Poppins',
             },
             tabBarIcon: ({ focused, color, size }) => (
               <MCIcon
@@ -149,19 +157,21 @@ export const RootContainer = ({ navigation }) => {
             tabBarLabelStyle: {
               fontSize: 12,
               color: '#292D32',
+              fontFamily: 'Poppins',
             },
           }}
         />
         <Tab.Screen
           name='More'
-          component={HomeContainer}
+          component={MoreContainer}
           options={{
             headerStyle: {
               backgroundColor: Colors.Primary,
             },
             headerTitleStyle: {
               color: '#ffffff',
-              fontWeight: 'bold',
+              fontWeight: '500',
+              fontFamily: 'Poppins',
             },
             tabBarIcon: ({ focused, color, size }) => (
               <MCIcon
@@ -173,7 +183,9 @@ export const RootContainer = ({ navigation }) => {
             tabBarLabelStyle: {
               fontSize: 12,
               color: '#292D32',
+              fontFamily: 'Poppins',
             },
+            headerShown: false,
           }}
         />
       </Tab.Navigator>
