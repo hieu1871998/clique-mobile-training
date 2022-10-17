@@ -6,6 +6,7 @@ import { ArticleDetail } from 'containers'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootContainer } from './RootContainer'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
+import SplashScreen from 'react-native-splash-screen'
 
 const Stack = createNativeStackNavigator()
 
@@ -20,8 +21,15 @@ const LightTheme = {
 export const AppNavigator = () => {
   const isDarkMode = useColorScheme() === 'dark'
 
+  const onReady = () => {
+    SplashScreen.hide()
+  }
+
   return (
-    <NavigationContainer theme={isDarkMode ? DarkTheme : LightTheme}>
+    <NavigationContainer
+      theme={isDarkMode ? DarkTheme : LightTheme}
+      onReady={onReady}
+    >
       <Stack.Navigator initialRouteName='Root'>
         <Stack.Group>
           <Stack.Screen
