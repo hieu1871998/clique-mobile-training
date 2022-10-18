@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { GestureResponderEvent, Switch, Text, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { Switch, Text, TouchableHighlight, View, StatusBar } from 'react-native'
 
 export const DisplaySettingsContainer = () => {
   const [compactToggled, setCompactToggled] = useState(false)
@@ -53,6 +52,11 @@ const SettingItem = ({
         elevation: 4,
       }}
     >
+      <StatusBar
+        animated
+        backgroundColor='#ffffff'
+        barStyle='dark-content'
+      />
       <TouchableHighlight
         className='rounded-md'
         activeOpacity={1}

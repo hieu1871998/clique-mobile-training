@@ -42,28 +42,15 @@ export const MiniSalesItem = ({
           >
             {horse?.name || horse?.horseName || horse?.nickname}
           </Text>
-          {/* <Text className='text-[10px] text-neutral-400 font-poppins'>
-            <Text>
-              {horse?.age ? `${horse?.age === 1 ? 'Yearling' : `${horse?.age} YO`}` : ''}
-            </Text>
-            <Text>{horse?.colour ? ` | ${horse?.colour?.colour}` : ''}</Text>
-            <Text>{horse?.sex ? ` | ${horse?.sex}` : ''}</Text>
-          </Text> */}
           {horse?.totalPrice || horse?.price || horse?.condition ? (
             <>
-              <Text className='text-primary-500 font-semibold font-poppins text-center'>
+              <Text className='text-primary-500 font-semibold font-poppins'>
                 <Text>{(horse?.totalPrice || horse?.price)?.toLocaleString('en-AU', {
                   style: 'currency',
                   currency: 'AUD',
                   minimumFractionDigits: 0,
                 })}</Text>
               </Text>
-              {/* <Text
-                className='text-xs text-neutral-500 font-poppins'
-                numberOfLines={2}
-              >
-                {horse?.condition}
-              </Text> */}
             </>
           ) : (
             <Text

@@ -17,5 +17,11 @@ module.exports = {
     ],
     'nativewind/babel',
     'react-native-reanimated/plugin',
+    [
+      'import',
+      {
+        libraryName: '@ant-design/react-native'
+      }
+    ]
   ]
 }

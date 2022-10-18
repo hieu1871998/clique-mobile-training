@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@ant-design/react-native": "^5.0.2",
     "@emotion/native": "^11.10.0",
     "@emotion/react": "^11.10.4",
     "@react-navigation/bottom-tabs": "^6.4.0",
@@ -25,6 +26,7 @@
     "@types/qs": "^6.9.7",
     "@types/react-native-vector-icons": "^6.4.12",
     "axios": "0.27.2",
+    "babel-plugin-import": "^1.13.5",
     "dayjs": "^1.11.5",
     "lodash": "^4.17.21",
     "nativewind": "^2.0.11",

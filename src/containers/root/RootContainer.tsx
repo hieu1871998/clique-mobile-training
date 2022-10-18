@@ -1,12 +1,11 @@
 /**@format */
 import { Colors } from 'constants'
-import React, { useEffect } from 'react'
-import { View, SafeAreaView, StatusBar, TouchableNativeFeedback } from 'react-native'
+import React from 'react'
+import { View, StatusBar, TouchableNativeFeedback } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ArticleContainer, DrawerNavigator, HomeContainer, RacingContainer, SalesContainer } from 'containers'
+import { ArticleContainer, HomeContainer, RacingContainer, SalesContainer, MoreContainer } from 'containers'
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { MoreContainer } from '../more/MoreContainer'
 
 const Tab = createBottomTabNavigator()
 
@@ -163,7 +162,7 @@ export const RootContainer = ({ navigation }) => {
         />
         <Tab.Screen
           name='More'
-          component={DrawerNavigator}
+          component={MoreContainer}
           options={{
             headerStyle: {
               backgroundColor: Colors.Primary,

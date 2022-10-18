@@ -2,7 +2,7 @@
 import { Colors } from 'constants'
 import React from 'react'
 import { useColorScheme } from 'react-native'
-import { ArticleDetail, DisplaySettingsContainer, DrawerNavigator } from 'containers'
+import { ArticleDetail, DisplaySettingsContainer } from 'containers'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootContainer } from './RootContainer'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
@@ -56,7 +56,11 @@ export const AppNavigator = () => {
             }}
           />
         </Stack.Group>
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Group
+          screenOptions={{
+            presentation: 'modal',
+          }}
+        >
           <Stack.Screen
             name='Detail'
             component={ArticleDetail}
@@ -69,8 +73,11 @@ export const AppNavigator = () => {
             }}
           />
           <Stack.Screen
-            name='Display Settings'
+            name='Display settings'
             component={DisplaySettingsContainer}
+            options={{
+              headerTitleAlign: 'center',
+            }}
           />
         </Stack.Group>
       </Stack.Navigator>
