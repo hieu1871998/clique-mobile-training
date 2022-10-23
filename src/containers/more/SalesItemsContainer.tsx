@@ -1,16 +1,50 @@
 import { useGetHorses } from 'apis'
 import { MiniSalesItem } from 'components'
 import { Horse, HorseRequest } from 'interfaces'
-import { useMemo, useState } from 'react'
+import { useMemo, useReducer, useState } from 'react'
 import { FlatList, RefreshControl, SafeAreaView, View, Text, Button } from 'react-native'
 import { HorseType } from '../sales'
 import { slice } from 'lodash'
 import { Stepper, List } from '@ant-design/react-native'
 import { Colors } from 'constants'
+import Animated, { FadeIn, FadeOut, Layout } from 'react-native-reanimated'
 
 interface SaleItem {
   horse: Horse,
-  quantity: number
+  quantity: number,
+}
+
+interface ItemAction {
+  horse: Horse
+  direction?: 'up' | 'down'
+}
+
+const reducer = (list: SaleItem[], action: ItemAction) => {
+  switch (action.direction) {
+    case 'up':
+      if (list.find(item => item.horse.id === action.horse.id)) {
+        const index = list.findIndex(item => item.horse.id === action.horse.id)
+        list[index].quantity++
+      } else {
+        list.push({
+          horse: action.horse,
+          quantity: 1
+        })
+      }
+    
+      return list
+    case 'down':
+      const index = list.findIndex(i => i.horse.id === action.horse.id)
+      list[index].quantity--
+
+      if (list[index].quantity === 0) {
+        list.splice(index, 1)
+      }
+
+      return list
+    default:
+      throw new Error('Invalid action')
+  }
 }
 
 export const SalesItemContainer = () => {
@@ -31,47 +65,15 @@ export const SalesItemContainer = () => {
   )
 
   const filteredHorses = useMemo<Horse[]>(
-    () => slice(horses?.filter(horse => horse.price !== undefined && horse?.horseClassifieds === undefined), 0, 9),
+    () => slice(horses?.filter(horse => horse.price !== undefined && horse?.horseClassifieds === undefined), 0, 6),
     [horses]
   )
-  const [items, setItems] = useState<SaleItem[]>([
-    // {
-    //   horse: filteredHorses?.[0],
-    //   quantity: 1
-    // },
-    // {
-    //   horse: filteredHorses?.[1],
-    //   quantity: 3
-    // },
-    // {
-    //   horse: filteredHorses?.[2],
-    //   quantity: 2
-    // }
-  ])
-
-  const onItemPress = (horse: Horse) => {
-    const list = items
-    if (list.find(item => item.horse.id === horse.id)) {
-      const index = list.findIndex(item => item.horse.id === horse.id)
-      list[index].quantity++
-
-      console.log(list[index].quantity)
-
-      setItems(list)
-    } else {
-      list.push({
-        horse,
-        quantity: 1
-      })
-
-      setItems(list)
-    }
-  }
+  const [state, dispatch] = useReducer(reducer, [])
 
   return (
-    <SafeAreaView className='pb-16'>
+    <SafeAreaView className='w-full h-full pb-16'>
       <FlatList
-        className='p-2 pb-20'
+        className='p-2'
         data={filteredHorses}
         keyExtractor={
           (item, index) => `${item.id || ''}${index}`
@@ -80,7 +82,13 @@ export const SalesItemContainer = () => {
           <View className='p-1 basis-1/3'>
             <MiniSalesItem
               horse={horse}
-              onPress={() => onItemPress(horse)}
+              onPress={() => {
+                dispatch({
+                  horse,
+                  direction: 'up'
+                })
+                refetch()
+              }}
             />
           </View>
         )}
@@ -92,69 +100,112 @@ export const SalesItemContainer = () => {
         }
         numColumns={3}
       />
-      {items?.length > 0 && (
-        <>
-          <View className='absolute w-full bottom-20'>
-            <List>
-              {items?.map(item => (
+      {/* {state?.length > 0 && (
+        <FlatList
+          className='w-full absolute bottom-0'
+          data={state}
+          keyExtractor={
+            (item, index) => `${item.horse.id || ''}${index}`
+          }
+          renderItem={({ item }) => (
+            <View
+              className='px-2 py-1 bg-white'
+              key={item.horse.id}
+            >
+              <Text>
+                <Text>{item.horse.name}</Text>]|[
+                <Text>{item.quantity}</Text>
+              </Text>
+            </View>
+          )}
+        />
+      )} */}
+      {state?.length > 0 && (
+        <Animated.View
+          className='w-full absolute bottom-0'
+          entering={FadeIn}
+          exiting={FadeOut}
+          layout={Layout.springify()}
+        >
+          <List renderFooter={() => (
+            <View className='w-full bg-white p-2 flex flex-row justify-between items-center'>
+              <View>
+                <Text className='text-lg text-neutral-500 font-poppins font-medium'>
+                  Total:&nbsp;
+                  <Text className='text-xl font-poppins font-semibold text-primary-500'>
+                    {
+                      state?.map(item => parseInt(item.horse.price.toString() || item.horse.totalPrice.toString()) * item.quantity)
+                      ?.reduce((prev, curr) => prev + curr, 0)
+                      .toLocaleString('en-AU', {
+                        style: 'currency',
+                        currency: 'AUD',
+                        minimumFractionDigits: 0,
+                      })
+                    }
+                  </Text>
+                </Text>
+                <Text className='text-base text-neutral-500 font-poppins'>
+                  Total quantity: <Text className='font-semibold'>{state?.length || 0} {state?.length > 1 ? 'items' : 'item'}</Text>
+                </Text>
+              </View>
+              <Button
+                color={Colors.Primary}
+                title='Checkout'
+              />
+            </View>
+          )}>
+            {state?.map(item => item.quantity !== 0 && (
+              <Animated.View
+                key={item?.horse?.id}
+                entering={FadeIn}
+                exiting={FadeOut}
+                layout={Layout.springify()}
+              >
                 <List.Item
                   key={item?.horse?.id}
                   extra={
                     <Stepper
                       min={0}
                       defaultValue={item?.quantity}
+                      value={item.quantity}
                       onChange={value => {
-                        item.quantity = value
-                        if (value === 0) {
-                          const index = items.findIndex(i => i.horse.id === item.horse.id)
-                          items.splice(index)
+                        dispatch({
+                          horse: item.horse,
+                          direction: value < item.quantity ? 'down' : 'up'
+                        })
+                        refetch()
+                      }}
+                      inputStyle={{
+                        fontFamily: 'Poppins',
+                        fontSize: 14
+                      }}
+                      styles={{
+                        container: {
+                          maxWidth: 96
                         }
                       }}
                     />
                   }
                 >
-                  <Text numberOfLines={1}>{item?.horse?.name}</Text>
-                  <Text>
-                    {
-                      (item?.horse?.totalPrice || item?.horse?.price)?.toLocaleString(
-                        'en-AU', {
-                          style: 'currency',
-                          currency: 'AUD',
-                          minimumFractionDigits: 0,
-                        }
-                      )
-                    }
-                  </Text>
+                  <View className='mr-2'>
+                    <Text className='font-medium text-neutral-500 font-poppins' numberOfLines={1}>{item?.horse?.name}</Text>
+                    <Text className='font-poppins'>
+                      {
+                        (item?.horse?.totalPrice || item?.horse?.price)?.toLocaleString(
+                          'en-AU', {
+                            style: 'currency',
+                            currency: 'AUD',
+                            minimumFractionDigits: 0,
+                          }
+                        )
+                      }
+                    </Text>
+                  </View>
                 </List.Item>
-              ))}        
-            </List>
-          </View>
-          <View className='absolute w-full bottom-0 bg-white p-2 flex flex-row justify-between items-center'>
-            <View>
-              <Text className='text-lg font-poppins font-medium'>
-                Total:&nbsp;
-                <Text className='text-xl font-poppins font-semibold text-red-500'>
-                  {
-                    items?.map(item => parseInt(item.horse.price.toString() || item.horse.totalPrice.toString()) * item.quantity)
-                    ?.reduce((prev, curr) => parseInt(prev as string) + parseInt(curr as string), 0)
-                    .toLocaleString('en-AU', {
-                      style: 'currency',
-                      currency: 'AUD',
-                      minimumFractionDigits: 0,
-                    })
-                  }
-                </Text>
-              </Text>
-              <Text className='text-base'>
-                Total quantity: <Text className='font-semibold'>{items?.length || 0} {items?.length > 1 ? 'items' : 'item'}</Text>
-              </Text>
-            </View>
-            <Button
-              color={Colors.Primary}
-              title='Checkout'
-            />
-          </View>
-        </>
+              </Animated.View>
+            ))}        
+          </List>
+        </Animated.View>
       )}
     </SafeAreaView>
   )

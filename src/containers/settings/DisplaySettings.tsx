@@ -1,5 +1,7 @@
+import { Colors } from 'constants'
 import { useState } from 'react'
-import { Switch, Text, TouchableHighlight, View, StatusBar } from 'react-native'
+import { Switch, Text, TouchableHighlight, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const DisplaySettingsContainer = () => {
   const [compactToggled, setCompactToggled] = useState(false)
@@ -13,7 +15,7 @@ export const DisplaySettingsContainer = () => {
   }
 
   return (
-    <View className='p-2'>
+    <SafeAreaView className='px-2 pt-16'>
       <SettingItem
         text='Toggle compact display'
         toggled={compactToggled}
@@ -24,7 +26,7 @@ export const DisplaySettingsContainer = () => {
         toggled={instantToggled}
         toggleSwitch={toggleInstant}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -39,26 +41,21 @@ const SettingItem = ({
 }) => {
   return (
     <View
-      className='m-1 rounded-md bg-white'
-      style={{
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2,
+      className='m-1 rounded bg-white'
+      // style={{
+      //   shadowColor: "#000",
+      //   shadowOffset: {
+      //     width: 0,
+      //     height: 2,
+      //   },
+      //   shadowOpacity: 0.23,
+      //   shadowRadius: 2,
 
-        elevation: 4,
-      }}
+      //   elevation: 4,
+      // }}
     >
-      <StatusBar
-        animated
-        backgroundColor='#ffffff'
-        barStyle='dark-content'
-      />
       <TouchableHighlight
-        className='rounded-md'
+        className='rounded'
         activeOpacity={1}
         underlayColor='#ffffff'
         onPress={toggleSwitch}
@@ -66,7 +63,7 @@ const SettingItem = ({
         <View
           className='rounded-md p-2 flex flex-row items-center justify-between'
         >
-          <Text className='ml-2'>{text}</Text>
+          <Text className='text-neutral-500 font-poppins ml-2'>{text}</Text>
           <View>
             <Switch
               trackColor={{ false: "#767577", true: "#30ca57" }}

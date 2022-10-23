@@ -27,15 +27,8 @@ export const MoreContainer = () => {
       drawerContent={CustomDrawerContent}
     >
       <Drawer.Screen
-        name='Sale Directory'
+        name='Sale'
         component={SalesItemContainer}
-      />
-      <Drawer.Screen
-        name='Settings'
-        component={SettingsContainer}
-        options={{
-          headerShown: false,
-        }}
       />
     </Drawer.Navigator>
   )
@@ -61,7 +54,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             <Text className='text-white text-base mt-4'>Welcome <Text className='font-medium'>Admin</Text></Text>
           </View>
         )}
-        onPress={() => console.log('Account!')}
+        onPress={null}
         pressColor={Colors.Primary}
       />
       <DrawerItem
@@ -70,7 +63,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             <Text className='text-white'>Sale</Text>
           </View>
         )}
-        onPress={() => navigation.navigate('Sale Directory')}
+        onPress={() => navigation.navigate('Sale')}
       />
       <View className='mx-4 border border-primary-400' />
       <DrawerItem

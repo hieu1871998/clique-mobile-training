@@ -2,7 +2,7 @@
 import { Colors } from 'constants'
 import React from 'react'
 import { useColorScheme } from 'react-native'
-import { ArticleDetail, DisplaySettingsContainer } from 'containers'
+import { ArticleDetail, DisplaySettingsContainer, SettingsContainer } from 'containers'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootContainer } from './RootContainer'
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native'
@@ -55,12 +55,32 @@ export const AppNavigator = () => {
               }
             }}
           />
+          <Stack.Screen
+            name='Settings'
+            component={SettingsContainer}
+            options={{
+              animation: 'fade_from_bottom',
+              headerTitleAlign: 'center',
+              headerTintColor: '#ffffff',
+              headerStyle: {
+                backgroundColor: Colors.Primary,
+              },
+            }}
+          />
+          <Stack.Screen
+            name='Display settings'
+            component={DisplaySettingsContainer}
+            options={{
+              animation: 'slide_from_right',
+              headerTitleAlign: 'center',
+              headerTintColor: '#ffffff',
+              headerStyle: {
+                backgroundColor: Colors.Primary,
+              },
+            }}
+          />
         </Stack.Group>
-        <Stack.Group
-          screenOptions={{
-            presentation: 'modal',
-          }}
-        >
+        <Stack.Group>
           <Stack.Screen
             name='Detail'
             component={ArticleDetail}
@@ -70,13 +90,6 @@ export const AppNavigator = () => {
               },
               headerShadowVisible: false,
               headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name='Display settings'
-            component={DisplaySettingsContainer}
-            options={{
-              headerTitleAlign: 'center',
             }}
           />
         </Stack.Group>

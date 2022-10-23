@@ -12,8 +12,8 @@ export const SettingsContainer = ({ navigation }: { navigation: NavigationHelper
   }
   
   return (
-    <SafeAreaView className=''>
-      <View className='py-4 bg-primary-500'>
+    <SafeAreaView className='pt-16'>
+      {/* <View className='py-4 bg-primary-500'>
         <Text className='text-center text-xl font-semibold font-poppins text-white'>Settings</Text>
         <View className='absolute top-1/2 left-2'>
           <TouchableHighlight
@@ -25,14 +25,15 @@ export const SettingsContainer = ({ navigation }: { navigation: NavigationHelper
             <Icon name='chevron-left' size={32} color='#ffffff' />
           </TouchableHighlight>
         </View>
-      </View>
-      <View className='p-2'>
+      </View> */}
+      <View className='px-2'>
         <SettingItem
           icon='account-outline'
           text='Account information'
         />
         <SettingItem
           icon='monitor-screenshot'
+          color={Colors.Primary}
           text='Display'
           onPress={onDisplayPress}
         />
@@ -63,27 +64,29 @@ export const SettingsContainer = ({ navigation }: { navigation: NavigationHelper
 
 const SettingItem = ({
   icon,
+  color,
   text,
   onPress,
 }: {
   icon: string
+  color?: string
   text: string
   onPress?: () => void
 }) => {
   return (
     <View
-      className='m-1 rounded-md bg-white'
-      style={{
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2,
+      className='m-1 rounded bg-white'
+      // style={{
+      //   shadowColor: "#000",
+      //   shadowOffset: {
+      //     width: 0,
+      //     height: 2,
+      //   },
+      //   shadowOpacity: 0.23,
+      //   shadowRadius: 2,
 
-        elevation: 4,
-      }}
+      //   elevation: 4,
+      // }}
     >
       <TouchableHighlight
         className='rounded-md'
@@ -94,8 +97,8 @@ const SettingItem = ({
         <View
           className='rounded-md p-2 flex flex-row items-center'
         >
-          <Icon name={icon} size={24} />
-          <Text className='ml-2'>{text}</Text>
+          <Icon name={icon} size={24} color={color} />
+          <Text className='text-neutral-500 font-poppins ml-2'>{text}</Text>
         </View>
       </TouchableHighlight>
     </View>

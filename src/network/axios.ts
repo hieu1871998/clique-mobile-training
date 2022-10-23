@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://test.bloodstockexchange.com.au/api'
+const API_URL = 'https://uat.bloodstockexchange.com.au/api'
 
 const instance = axios.create({
   baseURL: API_URL,
